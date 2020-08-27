@@ -9,17 +9,20 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
+      # https://github.com/actions/checkout
       - uses: actions/checkout@master
       - name: Create local changes
         run: |
           yarn install
           yarn update
+          npm version patch
       - name: Commit files
         run: |
           git config --local user.email "youngjuning@aliyun.com"
           git config --local user.name "youngjuning"
-          git commit -m "Add changes" -a
+          git commit -m "Update repo data" -a
       - name: Push changes
+        # https://github.com/ad-m/github-push-action
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
