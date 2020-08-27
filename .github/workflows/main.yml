@@ -18,8 +18,8 @@ jobs:
           npm version patch
       - name: Commit files
         run: |
-          git config --local user.email "youngjuning@aliyun.com"
-          git config --local user.name "youngjuning"
+          git config --global user.email "youngjuning@aliyun.com"
+          git config --global user.name "youngjuning"
           git commit -m "Update repo data" -a
       - name: Push changes
         # https://github.com/ad-m/github-push-action
