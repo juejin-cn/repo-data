@@ -20,7 +20,8 @@ jobs:
         run: |
           git config --local user.email "youngjuning@aliyun.com"
           git config --local user.name "俊宁"
-          git commit -m "Update repo data" -a
+          git add .
+          git commit -m "Update repo data"
       - name: Push changes
         # https://github.com/ad-m/github-push-action
         uses: ad-m/github-push-action@master
