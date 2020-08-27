@@ -13,14 +13,22 @@ const octokit = new Octokit({
   }
 })
 
-const tasks = repos.map(item => octokit.repos.get({
+const baseInfoTasks = repos.map(item => octokit.repos.get({
+  owner: item.owner,
+  repo: item.repo,
+}))
+const topicsTasks = repos.map(item => octokit.repos.getAllTopics({
   owner: item.owner,
   repo: item.repo,
 }))
 
-Promise.all(tasks).then(res => {
-  const result = res.map(({data}) => {
+const getData = async () => {
+  const baseInfo = await Promise.all(baseInfoTasks)
+  const topics = await Promise.all(topicsTasks)
+  const result = baseInfo.map(({data}) => {
+    const findTopics = topics.find(item => item.url === `https://api.github.com/repos/${data.full_name}/topics`)
     return {
+      topics: findTopics.data.names,
       url: data.svn_url,
       name: data.name,
       full_name: data.full_name,
@@ -31,7 +39,11 @@ Promise.all(tasks).then(res => {
       avatar_url: data.owner.avatar_url
     }
   })
-  fs.writeFile('repos.json', JSON.stringify(result), (err) => {
+  return result
+}
+
+getData().then((data) => {
+  fs.writeFile('repos.json', JSON.stringify(data), (err) => {
     if (err) {
       return console.log(err)
     }
