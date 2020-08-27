@@ -1,6 +1,6 @@
 {
   "name": "repo-data",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "repository": "https://github.com/juejin-im/repo-data.git",
   "author": "杨俊宁 <youngjuning@aliyun.com>",
