@@ -1,6 +1,6 @@
+var fs = require("fs")
 const { Octokit } = require("@octokit/rest")
 const { createOAuthAppAuth } = require("@octokit/auth")
-var fs = require("fs")
 const repos = require("./repos")
 
 // 认证（5000/h）、不认证（60/h）
@@ -31,9 +31,10 @@ Promise.all(tasks).then(res => {
       avatar_url: data.owner.avatar_url
     }
   })
-  fs.writeFile('data.json', JSON.stringify(result), (err) => {
-    if (!err) {
-      console.log('更新成功')
+  fs.writeFile('repos.json', JSON.stringify(result), (err) => {
+    if (err) {
+      return console.log(err)
     }
+    console.log("数据更新成功")
   })
 })

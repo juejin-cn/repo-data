@@ -5,8 +5,12 @@
   "repository": "https://github.com/juejin-im/repo-data.git",
   "author": "杨俊宁 <youngjuning@aliyun.com>",
   "license": "MIT",
+  "scripts": {
+    "update": "node index.js"
+  },
   "dependencies": {
     "@octokit/auth": "^2.0.0",
-    "@octokit/rest": "^18.0.4"
+    "@octokit/rest": "^18.0.4",
+    "axios": "^0.20.0"
   }
 }

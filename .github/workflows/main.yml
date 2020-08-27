@@ -1,5 +1,25 @@
-name: Cache Github Repo Data
-
+name: Cache Github Repo Datas
 on:
+  push:
+    branches:
+      - master
   schedule:
     - cron: "*/5 * * * *"
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Create local changes
+        run: |
+          yarn install
+          yarn update
+      - name: Commit files
+        run: |
+          git config --local user.email "youngjuning@aliyun.com"
+          git config --local user.name "youngjuning"
+          git commit -m "Add changes" -a
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
