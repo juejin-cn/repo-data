@@ -16,11 +16,12 @@ jobs:
         run: |
           yarn install
           yarn update
+      # http://t.cn/A64ZajB9
       - name: Commit files
         run: |
           git config --local user.email "youngjuning@aliyun.com"
           git config --local user.name "俊宁"
-          git diff-index --quiet HEAD || git commit -m 'bla'
+          git commit -m 'Update Data' --allow-empty -a
       - name: Push changes
         # https://github.com/ad-m/github-push-action
         uses: ad-m/github-push-action@master
