@@ -11,17 +11,14 @@ jobs:
     steps:
       # https://github.com/actions/checkout
       - uses: actions/checkout@master
-      - name: Git Config
-        run: |
-          git config --local user.email "youngjuning@aliyun.com"
-          git config --local user.name "youngjuning"
       - name: Create local changes
         run: |
           yarn install
           yarn update
-          npm version patch
       - name: Commit files
         run: |
+          git config --local user.email "youngjuning@aliyun.com"
+          git config --local user.name "俊宁"
           git commit -m "Update repo data" -a
       - name: Push changes
         # https://github.com/ad-m/github-push-action
