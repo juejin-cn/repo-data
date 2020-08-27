@@ -11,6 +11,10 @@ jobs:
     steps:
       # https://github.com/actions/checkout
       - uses: actions/checkout@master
+      - name: Git Config
+        run: |
+          git config --local user.email "youngjuning@aliyun.com"
+          git config --local user.name "youngjuning"
       - name: Create local changes
         run: |
           yarn install
@@ -18,8 +22,6 @@ jobs:
           npm version patch
       - name: Commit files
         run: |
-          git config --global user.email "youngjuning@aliyun.com"
-          git config --global user.name "youngjuning"
           git commit -m "Update repo data" -a
       - name: Push changes
         # https://github.com/ad-m/github-push-action
