@@ -30,7 +30,7 @@ jobs:
       - name: Sync to Gitee
         uses: wearerequired/git-mirror-action@master
         env:
-          # 使用 ssh-keygen 生成一对公钥私钥
+          # 使用 ssh-keygen 生成一对公钥私钥.
           # 在 Gitee 设置->SSH公钥 添加公钥
           # 在 GitHub Settings->SSH & GPG keys->SSH公钥 添加公钥
           # 在 GitHub 对应仓库的 Settings->Secrets 配置 GITEE_RSA_PRIVATE_KEY，存放私钥
