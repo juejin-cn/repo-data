@@ -26,15 +26,4 @@ jobs:
         # https://github.com/ad-m/github-push-action
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}   
-      - name: Sync to Gitee
-        uses: wearerequired/git-mirror-action@master
-        env:
-          # 使用 ssh-keygen 生成一对公钥私钥.
-          # 在 Gitee 设置->SSH公钥 添加公钥
-          # 在 GitHub Settings->SSH & GPG keys->SSH公钥 添加公钥
-          # 在 GitHub 对应仓库的 Settings->Secrets 配置 SSH_PRIVATE_KEY，存放私钥
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        with:
-          source-repo: "git@github.com:juejin-im/repo-data.git"
-          destination-repo: "git@gitee.com:juejin_im/repo-data.git"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
