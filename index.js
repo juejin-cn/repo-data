@@ -1,17 +1,11 @@
 // https://octokit.github.io/rest.js/v18
 var fs = require("fs")
 const { Octokit } = require("@octokit/rest")
-const { createOAuthAppAuth } = require("@octokit/auth")
 const repos = require("./repos")
 
 // 认证（5000/h）、不认证（60/h）
 const octokit = new Octokit({
   baseUrl: 'https://api.github.com',
-  authStrategy: createOAuthAppAuth,
-  auth: {
-    clientId: "095e78751050b0ea6006",
-    clientSecret:"b7dca1a93ae62fa9fd841b61d8fc25f9e6dd7b0b",
-  }
 })
 
 const baseInfoTasks = repos.map(item => octokit.repos.get({
